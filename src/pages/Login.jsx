@@ -1,19 +1,56 @@
-import { Box, Button, Center, Input, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Input,
+  Text,
+  VStack,
+  useToast,
+} from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import { SERVER } from "../App";
+import axios from "axios";
 
 const Login = () => {
   const [form, setForm] = useState({ username: "", password: "" });
+  const [isLoading, setIsLoading] = useState(false);
+  const toast = useToast();
 
   const handleInputChange = (e) => {
     const [key, value] = [e.target.name, e.target.value];
     setForm({ ...form, [key]: value });
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
-    alert(form.username);
+    try {
+      const result = await axios.post(`${SERVER}/auth/login`, form);
+      if (result.status === 200) {
+        setIsLoading(false);
+        toast({
+          title: "User Logged In!",
+          description: `Username - ${form.username}`,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      setIsLoading(false);
+      if (error) {
+        console.log(error);
+        toast({
+          title: "Error Occured!",
+          description: `${error.message}`,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    }
   };
 
   return (
@@ -44,7 +81,6 @@ const Login = () => {
             <Box w="100%">
               <Text mb="1">Password</Text>
               <Input
-                placeholder="Password"
                 name="password"
                 type="password"
                 value={form.password}
@@ -52,8 +88,12 @@ const Login = () => {
                 autoComplete="off"
               />
             </Box>
-
-            <Button colorScheme={"teal"} onClick={handleLoginSubmit}>
+            <Button
+              colorScheme={"teal"}
+              onClick={handleLoginSubmit}
+              isLoading={isLoading}
+              loadingText="Logging In"
+            >
               Login
             </Button>
           </VStack>

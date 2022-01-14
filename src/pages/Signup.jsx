@@ -3,16 +3,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 
-const Login = () => {
+const Signup = () => {
   return (
     <div>
       <Header>
-        <Link to="/">
-          <Button colorScheme="teal">Signup</Button>
+        <Link to="/login">
+          <Button colorScheme="teal">Login</Button>
         </Link>
       </Header>
     </div>
   );
 };
 
-export default Login;
+export default Signup;

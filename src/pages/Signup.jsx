@@ -44,8 +44,8 @@ const Signup = () => {
         console.log(error);
         toast({
           title: "Error Occured!",
-          description: `${error.data.message}`,
-          status: "success",
+          description: `${error.message}`,
+          status: "error",
           duration: 5000,
           isClosable: true,
         });

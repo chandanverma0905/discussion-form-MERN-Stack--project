@@ -1,19 +1,56 @@
-import { Box, Button, Center, Input, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Input,
+  Text,
+  useToast,
+  VStack,
+} from "@chakra-ui/react";
+import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { SERVER } from "../App";
 import Header from "../components/Header";
 
 const Signup = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState({ username: "", password: "", email: "" });
+  const toast = useToast();
 
   const handleInputChange = (e) => {
     const [key, value] = [e.target.name, e.target.value];
     setForm({ ...form, [key]: value });
   };
 
-  const handleSignupSubmit = (e) => {
+  const handleSignupSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
-    alert(form.username);
+    try {
+      const result = await axios.post(`${SERVER}/auth/signup`, form);
+      if (result.status === 200) {
+        setIsLoading(false);
+        toast({
+          title: "New Account Created",
+          description: `Email - ${form.email}`,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      setIsLoading(false);
+      if (error) {
+        console.log(error);
+        toast({
+          title: "Error Occured!",
+          description: `${error.data.message}`,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    }
   };
 
   return (
@@ -61,7 +98,12 @@ const Signup = () => {
                 autoComplete="off"
               />
             </Box>
-            <Button colorScheme={"teal"} onClick={handleSignupSubmit}>
+            <Button
+              colorScheme={"teal"}
+              onClick={handleSignupSubmit}
+              isLoading={isLoading}
+              loadingText="Creating New Account"
+            >
               Signup
             </Button>
           </VStack>

@@ -29,7 +29,7 @@ const Login = () => {
         <Box width="26rem" borderRadius={"10px"} shadow={"xl"} padding={"2rem"}>
           <VStack spacing={4}>
             <Text fontSize={"1.5rem"} fontWeight={"bold"} color="teal">
-              Login to Node Blogs
+              Welcome back 👋🏼
             </Text>
             <Input
               placeholder="Username"

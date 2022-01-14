@@ -27,7 +27,7 @@ const Signup = () => {
         <Box width="26rem" borderRadius={"10px"} shadow={"xl"} padding={"2rem"}>
           <VStack spacing={4}>
             <Text fontSize={"1.5rem"} fontWeight={"bold"} color="teal">
-              Create new account
+              Create new account 🤩
             </Text>
             <Input
               placeholder="Username"

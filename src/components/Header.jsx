@@ -14,7 +14,7 @@ const Header = ({ children }) => {
     >
       <HStack display={"flex"}>
         <Image src={logo} width="2rem" />
-        <Heading fontSize="2xl">Node Blogs</Heading>
+        <Heading fontSize="2xl">Disfo</Heading>
       </HStack>
       {children}
     </Box>

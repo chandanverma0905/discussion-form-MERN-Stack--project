@@ -31,22 +31,28 @@ const Login = () => {
             <Text fontSize={"1.5rem"} fontWeight={"bold"} color="teal">
               Welcome back 👋🏼
             </Text>
-            <Input
-              placeholder="Username"
-              name="username"
-              type="text"
-              value={form.username}
-              onChange={handleInputChange}
-              autoComplete="off"
-            />
-            <Input
-              placeholder="Password"
-              name="password"
-              type="password"
-              value={form.password}
-              onChange={handleInputChange}
-              autoComplete="off"
-            />
+            <Box w="100%">
+              <Text mb="1">Username</Text>
+              <Input
+                name="username"
+                type="text"
+                value={form.username}
+                onChange={handleInputChange}
+                autoComplete="off"
+              />
+            </Box>
+            <Box w="100%">
+              <Text mb="1">Password</Text>
+              <Input
+                placeholder="Password"
+                name="password"
+                type="password"
+                value={form.password}
+                onChange={handleInputChange}
+                autoComplete="off"
+              />
+            </Box>
+
             <Button colorScheme={"teal"} onClick={handleLoginSubmit}>
               Login
             </Button>

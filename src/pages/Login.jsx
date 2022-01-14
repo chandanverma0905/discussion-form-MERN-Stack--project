@@ -30,6 +30,8 @@ const Login = () => {
       const result = await axios.post(`${SERVER}/auth/login`, form);
       if (result.status === 200) {
         setIsLoading(false);
+        localStorage.setItem('token', result.data.jwt);
+        localStorage.setItem('userId', result.data._id);
         toast({
           title: "User Logged In!",
           description: `Username - ${form.username}`,

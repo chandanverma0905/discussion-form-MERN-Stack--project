@@ -1,16 +1,12 @@
-import {
-  Center,
-  ChakraProvider
-} from "@chakra-ui/react";
-import Header from "./components/Header";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Login from "./pages/Login";
 
 function App() {
   return (
-    <ChakraProvider>
-      <Header />
-      <Center></Center>
-    </ChakraProvider>
+    <Routes>
+      <Route path="/" element={<Login />} />
+    </Routes>
   );
 }
 

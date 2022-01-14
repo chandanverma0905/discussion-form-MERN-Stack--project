@@ -1,8 +1,8 @@
-import { Box, Button, Heading, HStack, Image } from "@chakra-ui/react";
+import { Box, Heading, HStack, Image } from "@chakra-ui/react";
 import React from "react";
 import logo from "../logo.svg";
 
-const Header = () => {
+const Header = ({ children }) => {
   return (
     <Box
       aria-label="Header"
@@ -16,9 +16,7 @@ const Header = () => {
         <Image src={logo} width="2rem" />
         <Heading fontSize="2xl">Node Blogs</Heading>
       </HStack>
-      <HStack>
-        <Button colorScheme="teal">Login</Button>
-      </HStack>
+      {children}
     </Box>
   );
 };

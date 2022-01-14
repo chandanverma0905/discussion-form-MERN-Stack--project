@@ -37,6 +37,7 @@ const Login = () => {
               type="text"
               value={form.username}
               onChange={handleInputChange}
+              autoComplete="off"
             />
             <Input
               placeholder="Password"
@@ -44,6 +45,7 @@ const Login = () => {
               type="password"
               value={form.password}
               onChange={handleInputChange}
+              autoComplete="off"
             />
             <Button colorScheme={"teal"} onClick={handleLoginSubmit}>
               Login

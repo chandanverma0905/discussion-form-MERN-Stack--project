@@ -27,11 +27,10 @@ const Login = () => {
     setIsLoading(true);
     e.preventDefault();
     try {
-      const result = await axios.post(`${SERVER}/auth/login`, form);
+      const result = await axios.post(`${SERVER}/auth/login`, form, {withCredentials: true});
       if (result.status === 200) {
         setIsLoading(false);
-        localStorage.setItem('token', result.data.jwt);
-        localStorage.setItem('userId', result.data._id);
+        localStorage.setItem('userId', result.data.userId);
         toast({
           title: "User Logged In!",
           description: `Username - ${form.username}`,

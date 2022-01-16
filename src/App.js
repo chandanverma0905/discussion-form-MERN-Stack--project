@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import config from "./ipConfig.json";
 
-export const SERVER = "http://3.111.89.90:8082";
+export const SERVER = `http://${config.workspaceIp}:8082`;
 
 function App() {
   return (

@@ -20,11 +20,15 @@ const {
   verifyAuthor,
 } = require("../middlewares/discussion.middleware");
 
+const passport = require('passport');
+const authenticate = passport.authenticate("jwt", { session: false })
+
 const validateDiscussion = validateSchema(discussionValidationSchema);
 const validateComment = validateSchema(commentValidationSchema);
 
 router.post(
   "/new",
+  authenticate,
   fetchUserInCollection,
   validateDiscussion,
   createNewDiscussion
